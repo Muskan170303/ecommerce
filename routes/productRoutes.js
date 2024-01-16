@@ -17,4 +17,10 @@ router.post('/products', async (req,res)=>{
     res.redirect('/products')
 })
 
+router.get('/products/:id', async (req,res)=>{
+    let {id}=req.params;
+    let foundPro= await Product.findById(id);
+    res.render('products/show',{foundPro});
+})
+
 module.exports=router;
