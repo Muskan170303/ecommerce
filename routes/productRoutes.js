@@ -23,4 +23,17 @@ router.get('/products/:id', async (req,res)=>{
     res.render('products/show',{foundPro});
 })
 
+router.get('/products/:id/edit' , async (req,res)=>{
+    let {id}=req.params; 
+    let foundPro= await Product.findById(id);
+    res.render('products/edit',{foundPro});
+})
+
+router.patch('/products/:id' , async(req,res)=>{
+    let {id}=req.params; 
+    let {name, img, price, desc}=req.body;
+    await Product.findByIdAndUpdate(id,{name, img, price, desc});
+    res.redirect(`/products/${id}`)
+})
+
 module.exports=router;
