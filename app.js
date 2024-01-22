@@ -5,6 +5,7 @@ const mongoose=require('mongoose')
 const ejsMate = require('ejs-mate')
 const seedDB=require('./seed');
 const productRoutes= require('./routes/productRoutes')
+const reviewRoutes= require('./routes/reviewRoutes')
 const methodOverride= require('method-override')
 
 mongoose.connect('mongodb://127.0.0.1:27017/apna_ecommerce')
@@ -26,6 +27,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 
 app.use(productRoutes);
+app.use(reviewRoutes);
 
 
 let PORT=8080;

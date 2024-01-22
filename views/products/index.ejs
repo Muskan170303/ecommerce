@@ -12,6 +12,9 @@
                     <h5 class="card-title"><%=item.price%></h5>
                     <p class="card-text"><%=item.desc%></p>
                     <a href="/products/<%=item.id%>" class="btn btn-info">View</a>
+                    <form class="d-inline" action="/products/<%=item.id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
           </div>
         </div>

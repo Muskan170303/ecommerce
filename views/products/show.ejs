@@ -2,7 +2,7 @@
 <%- include('../partials/navbar')%>
 <div class="row">
 
-    <div class="col mt-3">
+    <div class="col-lg-4 mt-3">
         <div class="card shadow mx-auto" style="width: 20rem;">
             <img src="<%=foundPro.img%>" class="card-img-top" alt="...">
             <div class="card-body">
@@ -13,6 +13,57 @@
                 <a href="/products/<%=foundPro.id%>/edit" class="btn btn-warning">Edit</a>
                 <a href="#" class="btn btn-success">Buy</a>
             </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mt-3 mx-5">
+        <h1 class="display-5 mb-4">Leave A Review</h1>
+        <form action="/products/<%=foundPro.id%>/review" method="POST">
+            <div >
+                <label class="form-label fs-sm fs-5" for="rating">Rating: </label>
+                <fieldset class="starability-basic form-control">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+                <!-- <label class="form-label" for="rating">Rating: </label>
+                <input class="form-control" type="range" min="0" max="5" id="rating" name="rating"> -->
+            </div>
+            <div class="mb-3">
+                <label class="form-label fs-sm fs-5" for="comment">Comment: </label>
+                <textarea class="form-control" type="text" row="3" id="comment" name="comment"></textarea>
+            </div>
+            <button class="btn btn-sm btn-success">Add Review</button>
+        </form>
+    </div>
+    <div class="col-lg-3 mt-3 m-2 vh-80">
+        <h1 class="p-3 display-6">All Reviews</h1>
+        <div class="p-3 h-50 overflow-scroll">
+            <%for(let review of foundPro.reviews){%>
+                <div class="card mt-2">
+                    <div class="card-header d-flex">
+                        <p class="starability-result mb-0" data-rating="<%=review.rating%>"></p>
+                        <a href="#" class="btn btn-sm btn-danger flex-fill mx-4">Delete</a>
+                    </div>
+                    <div class="card-body p-2 pb-0">
+                        <p class="mb-1">Comment: <%=review.comment%></p>
+                    </div>
+                    <div class="align-self-end m-0 px-1">
+                        <p class="fs-8 mb-1">
+                            <%if(review.createdAt){%>
+                                ~ <%=review.createdAt.toDateString()%>
+                            <%}%>
+                        </p>
+                    </div>
+                </div>
+            <%}%>
         </div>
     </div>
 
